@@ -1,0 +1,22 @@
+= hr4sh
+:toc: auto
+
+Prints horizontal rules.
+
+== Setup
+
+Make hr4sh available to your path, e.g.:
+
+[source, shell]
+----
+ln -s $(pwd)/src/main.sh ~/bin/hr4sh
+----
+
+== Usage
+
+Please refer to the script's usage by running:
+
+[source, shell]
+----
+hr4sh -h
+----
