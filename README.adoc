@@ -1,7 +1,7 @@
 = hr4sh
 :toc: auto
 
-Prints horizontal rules.
+Prints horizontal rules. Bash port of https://github.com/shyguys/hr.
 
 == Setup
 
