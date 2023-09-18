@@ -1,13 +1,13 @@
 # shellcheck shell=bash disable=SC2155
 
-lib::_repeat() {
+lib::repeat() {
   local str="${1}"
   local -i len="${2}"
 
   printf "%${len}s" | tr " " "${str}"
 }
 
-lib::print_paragraph() {
+lib::print_as_paragraph() {
   local -i length="${1}"
   local outer="${2}"
   local inner="${3}"
@@ -31,19 +31,19 @@ lib::print_titled() {
   local inner="${3}"
   local title="${4}"
 
-  local -i spare_len=$((length - "${#outer}" * 2 - "${#title}" - 4))
-  if [[ "${spare_len}" -lt 2 ]]; then
-    echo "Length insufficient, $((2 - spare_len)) more required." >&2
-    exit 1
+  local -i spare_length=$((length - "${#outer}" * 2 - "${#title}" - 4))
+  if [[ "${spare_length}" -lt 2 ]]; then
+    echo "[ERROR] length insufficient, $((2 - spare_length)) more required" >&2
+    return 1
   fi
-  local -i rspare_len=$((spare_len / 2))
-  local -i lspare_len=$((spare_len - rspare_len))
+  local -i right_spare_length=$((spare_length / 2))
+  local -i left_spare_length=$((spare_length - right_spare_length))
 
   echo \
     "${outer}" \
-    "$(lib::_repeat "${inner}" "${lspare_len}")" \
+    "$(lib::repeat "${inner}" "${left_spare_length}")" \
     "${title}" \
-    "$(lib::_repeat "${inner}" "${rspare_len}")" \
+    "$(lib::repeat "${inner}" "${right_spare_length}")" \
     "${outer}"
 }
 
@@ -52,11 +52,11 @@ lib::print_untitled() {
   local outer="${2}"
   local inner="${3}"
 
-  local -i spare_len=$((length - "${#outer}" * 2 - 2))
-  if [[ "${spare_len}" -lt 1 ]]; then
-    echo "Length insufficient, $((1 - spare_len)) more required." >&2
-    exit 1
+  local -i spare_length=$((length - "${#outer}" * 2 - 2))
+  if [[ "${spare_length}" -lt 1 ]]; then
+    echo "[ERROR] length insufficient, $((1 - spare_length)) more required" >&2
+    return 1
   fi
 
-  echo "${outer} $(lib::_repeat "${inner}" "${spare_len}") ${outer}"
+  echo "${outer} $(lib::repeat "${inner}" "${spare_length}") ${outer}"
 }

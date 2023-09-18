@@ -5,6 +5,13 @@ Prints horizontal rules.
 
 == Setup
 
+Install bash
+
+[source, shell]
+----
+brew install bash
+----
+
 Make hr4sh available to your path, e.g.:
 
 [source, shell]
