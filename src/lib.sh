@@ -1,4 +1,5 @@
-# shellcheck shell=bash disable=SC2155
+# shellcheck shell=bash
+# shellcheck disable=SC2155
 
 lib::repeat() {
   local str="${1}"
